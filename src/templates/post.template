@@ -1,0 +1,10 @@
+<li class="news-item">
+    <div class="feed-header">
+        <img src="images/$iconUrl">
+        <p class="feed-header">$text</p>
+    </div>
+    
+    !imageUrl{ 
+        <img style="height: 450px; width: 100%; background-image: url(/images/$imageUrl"> 
+    }
+</li>

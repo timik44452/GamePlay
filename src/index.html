@@ -8,9 +8,31 @@
     <link rel="stylesheet" href="css/fonts.css"/>
     <link rel="stylesheet" href="css/buttons.css"/>
 
-    <script type="text/javascript" src="/scripts/feed.js"></script>
+    <script type="text/javascript" src="/scripts/feedengine.js"></script>
+    <script type="text/javascript" src="/scripts/jquery-3.4.1.min.js"></script>
 
-    <title>Game Play</title>
+    <script>
+        $(document).ready(function (){
+
+            getTemplate(function (){
+                
+                let feeds = getPopularFeeds();
+                let container = document.getElementById("feed-container");
+
+                feeds.forEach(element => {
+
+                    let feed = document.createElement('li');
+
+                    feed.className = 'news-item';
+                    feed.innerHTML = getPostHTML(element);
+
+                    container.append(feed);
+                });
+            });
+        });
+    </script>
+
+    <title>Home</title>
 </head>
 <body>
     <div class="header">
@@ -21,13 +43,7 @@
     </div>
 
     <div id="feed-container" class="center">
-        <li class="news-item">
-            <div class="feed-header">
-                <img src="images/game.png">
-                <p class="feed-header">PROJECT STARTING</p>
-            </div>
-            <img style="height: 450px; width: 100%; background-image: url(/images/sm.png);">
-        </li>
+
     </div>
 </body>
 </html>
