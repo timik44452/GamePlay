@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/post.css"/>
     <link rel="stylesheet" href="css/fonts.css"/>
     <link rel="stylesheet" href="css/buttons.css"/>
 
-    <script type="text/javascript" src="/scripts/feedengine.js"></script>
+    <script type="text/javascript" src="/scripts/post-engine.js"></script>
     <script type="text/javascript" src="/scripts/jquery-3.4.1.min.js"></script>
 
     <script>
@@ -20,13 +21,7 @@
                 let container = document.getElementById("feed-container");
 
                 feeds.forEach(element => {
-
-                    let feed = document.createElement('li');
-
-                    feed.className = 'news-item';
-                    feed.innerHTML = getPostHTML(element);
-
-                    container.append(feed);
+                    container.innerHTML += getPostHTML(element);
                 });
             });
         });
@@ -37,8 +32,10 @@
 <body>
     <div class="header">
         <ul>
-            <li><a href="index.html" class="selected">Home</a></li>
-            <li><a href="teams.html" class="unselected">Teams</a></li>
+            <li class="left"><a href="index.html" class="selected">Home</a></li>
+            <li class="left"><a href="teams.html" class="unselected">Teams</a></li>
+
+            <li class="right"><a href="teams.html" class="unselected">Sign in</a></li>
         </ul>
     </div>
 

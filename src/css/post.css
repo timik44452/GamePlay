@@ -1,0 +1,52 @@
+.post-container
+{
+    display: block;
+    margin-top: 2%;
+    border-radius: 25px;
+    background: white;
+    box-shadow: 0 0 25px #ddd;
+}
+.team-name
+{
+    font-size: 20px;
+}
+.date
+{
+    font-size: 14px;
+    color: gray;
+}
+.post-info
+{
+    min-height: 50px;
+    padding: 20px 5% 0px;
+}
+.post-preview
+{
+    padding: 0px 5% 5%;
+}
+.post-icon
+{
+    float:left;
+    display: block;
+}
+.post-author
+{
+    float: left;
+    display: block;
+
+    margin: 5px 15px;
+}
+
+.post-text-container
+{
+    padding: 5px 5% 0px;
+    text-align: left;
+}
+
+.post-text
+{
+    font-size: 18px;
+    padding-left: 50px;
+
+    min-height: 36px;
+}

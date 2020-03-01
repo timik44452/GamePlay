@@ -1,5 +1,6 @@
 class news_container{
-    constructor(date, text, iconUrl, imageUrl){
+    constructor(team, date, text, iconUrl, imageUrl){
+        this.team = team;
         this.date = date;
         this.text = text;
         this.iconUrl = iconUrl;
@@ -9,7 +10,7 @@ class news_container{
 
 function getTemplate(callback){
 
-    const template_url = "/templates/post.template";
+    const template_url = "/templates/post.html";
 
     $.get(template_url, (data) => {
         this.postHTMLTemplate = data;
@@ -20,11 +21,10 @@ function getTemplate(callback){
 
 function getPopularFeeds(){
     return [
-        new news_container('14:05 21.01.2020', 'Starting of project', 'game.png', 'sm.png'),
-        new news_container('14:15 21.01.2020', 'Starting of new project', 'game.png'),
-        new news_container('14:05 21.01.2020', 'Starting of project', 'game.png', 'sm.png'), 
-        new news_container('14:15 21.01.2020', 'Starting of new project', 'game.png'),
-        new news_container('14:05 21.01.2020', 'Starting of project', 'game.png', 'sm.png')
+        new news_container('Grecha team', '14:15 21.01.2020', 'Starting of new project', 'game.png'),
+        new news_container('Grecha team', '14:05 21.01.2020', 'Starting of project', 'game.png', 'sm.png'), 
+        //new news_container('Grecha team', '14:15 21.01.2020', 'Starting of new project', 'game.png'),
+        new news_container('Grecha team', '14:05 21.01.2020', 'Starting of project', 'game.png', 'sm.png')
     ];
 }
 
@@ -38,7 +38,7 @@ function getPostHTML(element)
 
     Object.keys(element).forEach(key =>{
 
-        let bodyRegex = new RegExp('{[\\s\\S]*.*[\\s\\S]}');
+        let bodyRegex = new RegExp('{[\\s\\S]*?}');
         
         //TODO:
         // !imageUrl {   WORK !!!
@@ -47,14 +47,14 @@ function getPostHTML(element)
         // { 
         //
 
-        let expressionRegex = new RegExp(`!${key}{[\\s\\S]*.*[\\s\\S]}`, 'g');
+        let expressionRegex = new RegExp(`!${key}{[\\s\\S]*?}`, 'g');
 
         let match = expressionRegex.exec(postHTML);
         
         if(match != null)
         {
             match.forEach(value =>{
-                
+                console.log(value);
                 if(element[key] == null || element[key] == undefined || element[key] == '')
                     postHTML = postHTML.replace(value, '');
                 else
