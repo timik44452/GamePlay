@@ -9,7 +9,6 @@ class news_container{
 }
 
 function getTemplate(callback){
-
     const template_url = "/templates/post.html";
 
     $.get(template_url, (data) => {
@@ -28,33 +27,24 @@ function getPopularFeeds(){
     ];
 }
 
-function getPostHTML(element)
-{
+function getPostHTML(element){
+    
     if(this.postHTMLTemplate == undefined){
         return;
     }
 
     let postHTML = postHTMLTemplate;
-
+    let bodyRegex = /{[\s\S]*?}/;
+    
     Object.keys(element).forEach(key =>{
 
-        let bodyRegex = new RegExp('{[\\s\\S]*?}');
-        
-        //TODO:
-        // !imageUrl {   WORK !!!
-        //
-        // !imageUrl     DOSN'T WORK !!!
-        // { 
-        //
-
-        let expressionRegex = new RegExp(`!${key}{[\\s\\S]*?}`, 'g');
+        let expressionRegex = new RegExp(`!${key}\\s*?{[\\s\\S]*?}`, 'g');
 
         let match = expressionRegex.exec(postHTML);
-        
-        if(match != null)
+
+        if(match !== null)
         {
             match.forEach(value =>{
-                console.log(value);
                 if(element[key] == null || element[key] == undefined || element[key] == '')
                     postHTML = postHTML.replace(value, '');
                 else
