@@ -1,0 +1,52 @@
+.search-box-container
+{
+    border-radius: 40px;
+    box-shadow: 0 0 25px #ddd;
+}
+
+#search-box
+{
+    padding: 10px 5%;
+    width: 90%;
+    background: none; 
+    border-style: none;
+    outline: none;
+    font-size: 16px;
+    font-family: Roboto-Medium;
+}
+
+.result-container
+{
+    display: block;
+    margin-top: 2%;
+    border-radius: 25px;
+    background: white;
+    box-shadow: 0 0 25px #ddd;
+}
+
+.result-container:hover
+{
+    background: rgb(248, 248, 248);
+}
+
+.result-name
+{
+    font-size: 20px;
+}
+.result-info
+{
+    min-height: 60px;
+    padding: 10px 5%;
+}
+.result-icon
+{
+    float:left;
+    display: block;
+}
+.result-author
+{
+    float: left;
+    display: block;
+
+    margin: 5px 15px;
+}

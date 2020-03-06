@@ -1,36 +1,36 @@
-class news_container{
-    constructor(team, date, text, iconUrl, imageUrl){
-        this.team = team;
-        this.date = date;
-        this.text = text;
-        this.iconUrl = iconUrl;
-        this.imageUrl = imageUrl;
-    }
-}
+var cachedHTML = [];
 
-function getTemplate(callback){
-    const template_url = "/templates/post.html";
+function getTemplate(template_name, callback){
+
+    cachedHTML.forEach(element =>{
+        if(element.template_name == template_name){
+            this.postHTMLTemplate = element.HTML;
+        };
+    });
+
+    let template_url = "./templates/" + template_name;
 
     $.get(template_url, (data) => {
         this.postHTMLTemplate = data;
         
+        this.cachedHTML.push(
+        {
+            template_name:template_name, 
+            HTML:data
+        });
+
         callback();
     });
 }
 
-function getPopularFeeds(){
-    return [
-        new news_container('Grecha team', '14:15 21.01.2020', 'Starting of new project', 'game.png'),
-        new news_container('Grecha team', '14:05 21.01.2020', 'Starting of project', 'game.png', 'sm.png'), 
-        //new news_container('Grecha team', '14:15 21.01.2020', 'Starting of new project', 'game.png'),
-        new news_container('Grecha team', '14:05 21.01.2020', 'Starting of project', 'game.png', 'sm.png')
-    ];
-}
-
-function getPostHTML(element){
+function getHTML(element){
     
-    if(this.postHTMLTemplate == undefined){
+    if(!this.postHTMLTemplate){
         return;
+    }
+
+    if(!element){
+        return this.postHTMLTemplate;
     }
 
     let postHTML = postHTMLTemplate;
@@ -60,7 +60,7 @@ function getPostHTML(element){
             });
         }
 
-        postHTML = postHTML.replace(`$${key}`, element[key]);
+        postHTML = postHTML.replace(new RegExp(`\\$${key}`, 'g'), element[key]);
     });
 
     return postHTML;

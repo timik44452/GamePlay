@@ -9,19 +9,21 @@
     <link rel="stylesheet" href="css/fonts.css"/>
     <link rel="stylesheet" href="css/buttons.css"/>
 
-    <script type="text/javascript" src="scripts/post-engine.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+    <script type="text/javascript" src="scripts/post.js"></script>
+    <script type="text/javascript" src="scripts/template-engine.js"></script>
     <script type="text/javascript" src="scripts/jquery-3.4.1.min.js"></script>
-
+    
     <script>
         $(document).ready(function (){
 
-            getTemplate(function (){
+            getTemplate('post.html', function (){
                 
                 let feeds = getPopularFeeds();
                 let container = document.getElementById("feed-container");
 
                 feeds.forEach(element => {
-                    container.innerHTML += getPostHTML(element);
+                    container.innerHTML += getHTML(element);
                 });
             });
         });
@@ -35,7 +37,7 @@
             <li class="left"><a href="index.html" class="selected">Home</a></li>
             <li class="left"><a href="teams.html" class="unselected">Teams</a></li>
 
-            <li class="right"><a href="teams.html" class="unselected">Sign in</a></li>
+            <li class="right"><a onclick="showSignIn()" class="unselected">Sign in</a></li>
         </ul>
     </div>
 

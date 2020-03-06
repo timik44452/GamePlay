@@ -7,9 +7,28 @@
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="css/buttons.css"/>
     <link rel="stylesheet" href="css/fonts.css"/>
+    <link rel="stylesheet" href="css/search.css"/>
+    
+    <script type="text/javascript" src="scripts/main.js"></script>
+    <script type="text/javascript" src="scripts/search.js"></script>
+    <script type="text/javascript" src="scripts/template-engine.js"></script>
+    <script type="text/javascript" src="scripts/jquery-3.4.1.min.js"></script>
+    
+    <script>
+        $(document).ready(function (){
 
-    <script type="text/javascript" src="/scripts/feed.js"></script>
+            getTemplate('team.html', function (){
+                
+                bindingToInput('search-box');
 
+                let container = document.getElementById("result-container");
+
+                getCurrentTeams().forEach(element => {
+                    container.innerHTML += getHTML(element);
+                });
+            });
+        });
+    </script>
     <title>Game Play</title>
 </head>
 <body>
@@ -18,12 +37,16 @@
             <li class="left"><a href="index.html" class="unselected">Home</a></li>
             <li class="left"><a href="teams.html" class="selected">Teams</a></li>
 
-            <li class="right"><a href="teams.html" class="unselected">Sign in</a></li>
+            <li class="right"><a onclick="showSignIn()" class="unselected">Sign in</a></li>
         </ul>
     </div>
     
-    <div class="center">
-        <input class="search-box">
+    <div class="center search-box-container">
+        <input id="search-box">
+    </div>
+
+    <div id="result-container" class="center">
+        
     </div>
 </body>
 </html>
