@@ -6,6 +6,7 @@
     background: white;
     box-shadow: 0 0 25px #ddd;
 }
+
 .team-name
 {
     color: black;
@@ -18,20 +19,24 @@
     font-size: 14px;
     color: gray;
 }
+
 .post-info
 {
     min-height: 50px;
     padding: 20px 5% 0px;
 }
+
 .post-preview
 {
     padding: 0px 5% 5%;
 }
+
 .post-icon
 {
     float:left;
     display: block;
 }
+
 .post-author
 {
     float: left;

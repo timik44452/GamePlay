@@ -5,6 +5,10 @@ function getTemplate(template_name, callback){
     cachedHTML.forEach(element =>{
         if(element.template_name == template_name){
             this.postHTMLTemplate = element.HTML;
+
+            callback();
+            
+            return;
         };
     });
 
