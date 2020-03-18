@@ -16,14 +16,15 @@
     
     <script>
         $(document).ready(function (){
-
+            
             getTemplate('post.html', function (){
                 
-                let feeds = getPopularFeeds();
                 let container = document.getElementById("feed-container");
-
-                feeds.forEach(element => {
-                    container.innerHTML += getHTML(element);
+                
+                getPopularFeeds(feeds => {
+                    feeds.forEach(element => {
+                        container.innerHTML += getHTML(element);
+                    });
                 });
             });
         });

@@ -54,8 +54,6 @@ sqlcontroller.database.serialize(function(){
             }
         },
         log);
-
-    sqlcontroller.readData('team', log);
 });
 
 app.listen(serverConfig, onServerStarted);  
@@ -63,6 +61,29 @@ app.listen(serverConfig, onServerStarted);
 // Dynamic
 app.get('/teams/:id', function(req, res){
     res.sendFile(repos + '/team.html');
+});
+
+//posts
+app.get('/posts/best', function(req, res){
+    sqlcontroller.readData('team', (elements) =>{
+        let response = '';
+
+        if(elements){
+            elements.forEach(element =>{
+                response += `{"team":"${element.NAME}","date":"14:59 09.09.2020","text":"Hello world","iconUrl":null,"imageUrl":null},`;
+            });
+        }
+
+        if(response.length > 0){
+            response = response.substring(0, response.length - 1);
+        }
+
+        response = `[${response}]`;
+
+        res.send(response);
+    }, log);
+
+    
 });
 
 // Files

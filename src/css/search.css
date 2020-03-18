@@ -1,12 +1,18 @@
 .search-box-container
 {
+    display: flex;
     border-radius: 40px;
     box-shadow: 0 0 25px #ddd;
 }
 
+#search-box-icon
+{
+    padding: 0 2%;
+}
+
 #search-box
 {
-    padding: 10px 5%;
+    padding: 10px 0 10px 5%;
     width: 90%;
     background: none; 
     border-style: none;

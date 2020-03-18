@@ -17,8 +17,7 @@ function getTemplate(template_name, callback){
     $.get(template_url, (data) => {
         this.postHTMLTemplate = data;
         
-        this.cachedHTML.push(
-        {
+        this.cachedHTML.push({
             template_name:template_name, 
             HTML:data
         });
@@ -30,10 +29,12 @@ function getTemplate(template_name, callback){
 function getHTML(element){
     
     if(!this.postHTMLTemplate){
+        console.warn('Template is undefined');
         return;
     }
 
     if(!element){
+        console.warn('Element is undefined');
         return this.postHTMLTemplate;
     }
 
@@ -46,21 +47,22 @@ function getHTML(element){
 
         let match = expressionRegex.exec(postHTML);
 
-        if(match !== null)
+        if(match)
         {
             match.forEach(value =>{
-                if(element[key] == null || element[key] == undefined || element[key] == '')
-                    postHTML = postHTML.replace(value, '');
-                else
+
+                let replaceValue = '';
+
+                if(element[key])
                 {
-                    //TODO: It's scared
-                    let replaceValue = bodyRegex.exec(value).toString();
+                    replaceValue = bodyRegex.exec(value).toString();
 
-                    replaceValue = replaceValue.replace('{', '');
-                    replaceValue = replaceValue.replace('}', '');
-
-                    postHTML = postHTML.replace(value, replaceValue);
+                    if(replaceValue.length > 0){
+                        replaceValue = replaceValue.substring(1, replaceValue.length - 1);
+                    }
                 }
+                
+                postHTML = postHTML.replace(value, replaceValue);
             });
         }
 

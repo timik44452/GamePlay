@@ -8,11 +8,12 @@ class news_container{
     }
 }
 
-function getPopularFeeds(){
-    return [
-        new news_container('Grecha team', '14:15 21.01.2020', 'Starting of new project', 'game.png'),
-        new news_container('Grecha team', '14:05 21.01.2020', 'Starting of project', 'game.png', 'sm.png'), 
-        //new news_container('Grecha team', '14:15 21.01.2020', 'Starting of new project', 'game.png'),
-        new news_container('Grecha team', '14:05 21.01.2020', 'Starting of project', 'game.png', 'sm.png')
-    ];
+function getPopularFeeds(callback){
+
+    let _result = [];
+
+    $.get("posts/best", (result) =>{
+        console.log(result);
+        callback(JSON.parse(result));
+    });
 }

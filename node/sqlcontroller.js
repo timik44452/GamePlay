@@ -79,7 +79,7 @@ module.exports = {
         }
     },
 
-    readData : function(data, logCallback){
+    readData : function(data, dataCallback, logCallback){
         if(state == DatabaseState.CONNECTED_WRITE || state == DatabaseState.CONNECTED_READ_WRITE){
             
             let tableName = undefined;
@@ -97,10 +97,10 @@ module.exports = {
                 let sqlString = `SELECT * FROM ${tableName} ${condition ? `WHERE ${condition}` : emptystring};`;
                 
                 this.database.all(sqlString, [], function(error, elements) {
-
+                    
                     ErrorHandler(error, logCallback);
-
-                    return elements;
+                    
+                    dataCallback(elements);
                 });
             }
         }
