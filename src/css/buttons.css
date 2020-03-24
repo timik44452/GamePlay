@@ -9,3 +9,14 @@
     color: white;
     background-color: #3D3D3D;
 }
+
+.interactive-opacity
+{
+    opacity: 0.5;
+}
+
+.interactive-opacity:hover
+{
+    opacity: 1;
+    transition-duration: .2s;
+}

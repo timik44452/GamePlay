@@ -59,7 +59,7 @@ sqlcontroller.database.serialize(function(){
 app.listen(serverConfig, onServerStarted);  
 
 // Dynamic
-app.get('/teams/:id', function(req, res){
+app.get('/teams/*', function(req, res){
     res.sendFile(repos + '/team.html');
 });
 
